@@ -103,7 +103,7 @@ const Signin: React.FC = () => {
           </Box>
 
          <div style={styles.buttonContainer}>
-          <Button type="submit" variant="contained" sx={styles.signupButton}>Sign Up</Button>
+          <Button type="submit" variant="contained" sx={styles.signupButton}>Sign In</Button>
           </div>
           {/* <p style={styles.orText}>OR</p>
           <div style={styles.appleContainer}>
@@ -119,7 +119,6 @@ const Signin: React.FC = () => {
 
 const styles : { [key: string]: CSSProperties }= {
  maincontainer: {
-    border: '1px solid grey',
     height: '500px',
     width: '1100px',
     borderRadius: '12px',
@@ -130,14 +129,14 @@ const styles : { [key: string]: CSSProperties }= {
     transform: 'translate(-50%, -50%)'
   },  
   buttonContainer:{marginTop:'15px'},
-  container: { display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  imageContainer: { flex: 1.3,  },
+  container: { display: 'flex', alignItems: 'center', justifyContent: 'center',background:'white',borderRadius:'16px' },
+  imageContainer: { flex: 1.3, height:'500px' },
   carImage: { width: '95%',height:"500px" ,  borderBottomLeftRadius: '12px', 
     borderTopLeftRadius: '12px'},
   formContainer: { flex: 1, padding: '20px' },
   title: { fontSize: '32px', marginBottom: '10px' },
   inputBox: {marginBottom:'20px',height:'60px' },
-  errorText: { color: 'red', fontSize: '16px' },
+  errorText: { color: 'red', fontSize: '16px',textOverflow:'hidden',display:'block' },
   signupButton: { width: '100%', backgroundColor: '#EF6E0B',borderRadius:'30px',height:'48px',fontSize:'18px ' },
   // orText: { textAlign: 'center', margin: '20px 0' },
   // appleContainer: { textAlign: 'center', marginTop: '10px' },

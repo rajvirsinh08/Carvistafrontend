@@ -6,7 +6,9 @@ import React, { useState, useRef } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import CloseIcon from '@mui/icons-material/Close';
+// import CloseIcon from '@mui/icons-material/Close';
+
+
 
 // Assets
 import carimage from '../Assets/Images/carimage.jpg';
@@ -33,6 +35,7 @@ const Signup: React.FC = () => {
   const [passwordError, setPasswordError] = useState('');
   const [nameError, setNameError] = useState('');
   const [contactError, setContactError] = useState('');
+
 
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,9 +96,9 @@ const Signup: React.FC = () => {
         </div>
         <div style={styles.formContainer}>
           <form onSubmit={handleSubmit}>
-          <div style={styles.closeIconContainer}> 
+          {/* <div style={styles.closeIconContainer}> 
             <CloseIcon />
-          </div>
+          </div> */}
                       <Box sx={styles.inputBox}>
               <TextField fullWidth label="Name" value={name} onChange={handleNameChange} inputRef={nameRef} />
               <span style={styles.errorText}>{nameError}</span>
@@ -131,8 +134,7 @@ const Signup: React.FC = () => {
 
 const styles: { [key: string]: CSSProperties } = {
   maincontainer: {
-    border: '1px solid grey',
-    height: '500px',
+    height: '490px',
     width: '1100px',
     borderRadius: '12px',
     margin: 'auto',
@@ -142,20 +144,21 @@ const styles: { [key: string]: CSSProperties } = {
     transform: 'translate(-50%, -50%)',
   },
   buttonContainer: { marginTop: '15px' },
-  container: { display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  imageContainer: { flex: 1.3 },
+  container: { display: 'flex', alignItems: 'center', justifyContent: 'center',background:'white',borderRadius:'16px'  },
+  imageContainer: { flex: 1.3 ,height:'500px'},
   carImage: { width: '95%', height: '500px', borderBottomLeftRadius: '12px', borderTopLeftRadius: '12px' },
-  formContainer: { flex: 1, padding: '20px' },
-  title: { fontSize: '32px', marginBottom: '10px' },
-  inputBox: { marginBottom: '20px', height: '60px' },
-  errorText: { color: 'red', fontSize: '16px' },
-  signupButton: { width: '100%', backgroundColor: '#EF6E0B', borderRadius: '30px', height: '48px', fontSize: '18px ' },
-  closeIconContainer: {
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
-    cursor: 'pointer',
+  formContainer: { flex: 1, padding: '20px'},
+  // title: { fontSize: '32px', marginBottom: '10px' },
+  inputBox: { marginBottom: '20px', height: '70px' },
+  errorText: { color: 'red', fontSize: '16px' ,  textOverflow: 'hidden',margin:'auto',   display: 'block',
   },
+  signupButton: { width: '100%', backgroundColor: '#EF6E0B', borderRadius: '30px', height: '48px', fontSize: '18px ' },
+  // closeIconContainer: {
+  //   position: 'absolute',
+  //   top: '10px',
+  //   right: '10px',
+  //   cursor: 'pointer',
+  // },
 };
 
 export default Signup;

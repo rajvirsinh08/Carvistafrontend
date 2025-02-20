@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import cars24logo from "../Assets/Images/cars24logo.png";
 import cars24heropage from "../Assets/Images/cars24heropage.png";
-import buycar from "../Assets/Images/buycar.png";
-import sellcar from "../Assets/Images/sellcar.png";
-import newcar from "../Assets/Images/newcar.png";
-import carloan from "../Assets/Images/carloan.png";
-import vehiclehistory from "../Assets/Images/vehiclehistory.png";
-import insurance from "../Assets/Images/insurance.png";
-import servicerepair from "../Assets/Images/servicerepair.png";
-import more from "../Assets/Images/more.png";
+// import buycar from "../Assets/Images/buycar.png";
+// import sellcar from "../Assets/Images/sellcar.png";
+// import newcar from "../Assets/Images/newcar.png";
+// import carloan from "../Assets/Images/carloan.png";
+// import vehiclehistory from "../Assets/Images/vehiclehistory.png";
+// import insurance from "../Assets/Images/insurance.png";
+// import servicerepair from "../Assets/Images/servicerepair.png";
+// import more from "../Assets/Images/more.png";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,14 +17,45 @@ import {
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 // import { useNavigate } from "react-router";
-
+import Modal from '@mui/joy/Modal';
+import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
+import Signup from "./Signup";
+import Signin from "./Signin";
 
 export default function DashBoard() {
   // const navigate=useNavigate();
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [modalType, setModalType] = useState<"signup" | "signin" | null>(null);
 
   return (
 
     <div className="container">
+       <React.Fragment>
+       <Modal
+        aria-labelledby="modal-title"
+        aria-describedby="modal-desc"
+        open={open}
+        onClose={() => setOpen(false)}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
+        <Sheet
+          variant="outlined"
+          sx={{ maxWidth: 500, borderRadius: "md", p: 3, boxShadow: "lg" }}
+        >
+          <Typography
+            component="h2"
+            id="modal-title"
+            level="h4"
+            textColor="inherit"
+            sx={{ fontWeight: "lg", mb: 1 }}
+          >
+            {modalType === "signup" ? <Signup /> : <Signin/>}
+          </Typography>
+        </Sheet>
+      </Modal>
+
+    </React.Fragment>
       {/* Header section */}
       <div
         className="header"
@@ -34,6 +65,7 @@ export default function DashBoard() {
           className="innerheader"
           style={styles.innerheader}
         >
+ 
           {/* Logo and Location */}
           {/* <div className='headeritems'  style={{display:'flex',justifyContent: 'space-evenly',alignItems:'center',width:'100%'}}> */}
           <div
@@ -174,6 +206,7 @@ export default function DashBoard() {
               </div>
             </ul>
           </div>
+          
           <div className="headersection3" style={styles.headersection3}>
             <div className="loginsection">
               <div
@@ -196,8 +229,15 @@ export default function DashBoard() {
                 >
                   <AccountCircleIcon />
                 </div>
-                <button style={{height:'40px',width:'60px',background:'#EF6E0B',borderRadius:'14px',color:'white'}} onClick={()=>{}}>Signup</button>
-                <button style={{height:'40px',width:'60px',background:'#EF6E0B',borderRadius:'14px',color:'white'}} >Signin</button>
+                
+                <button style={{height:'40px',width:'60px',background:'#EF6E0B',borderRadius:'14px',color:'white'}} onClick={() => {
+                    setModalType("signup");
+                    setOpen(true);
+                  }}>Signup</button>
+                <button style={{height:'40px',width:'60px',background:'#EF6E0B',borderRadius:'14px',color:'white'}}   onClick={() => {
+                    setModalType("signin");
+                    setOpen(true);
+                  }}>Signin</button>
                 {/* <div
                   style={{
                     display: "flex",
@@ -243,7 +283,7 @@ export default function DashBoard() {
         className="heropagecontainer"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        <div
+        {/* <div
           className="heroconatiner"
           style={{
             display: "absolute",
@@ -264,8 +304,8 @@ export default function DashBoard() {
               paddingRight: "56px",
               paddingLeft: "56px",
             }}
-          >
-            <div className="buycontent">
+          > */}
+            {/* <div className="buycontent">
               <img
                 src={buycar}
                 style={{ paddingTop: "14px" }}
@@ -322,11 +362,12 @@ export default function DashBoard() {
                 alt="more"
               ></img>
               <p>More</p>
-            </div>
+            </div> */}
           </div>
         </div>
-      </div>
-    </div>
+    //   </div>
+    // </div>
+    
   );
 }
 
