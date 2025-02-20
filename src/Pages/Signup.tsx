@@ -1,5 +1,7 @@
 // React
 import React, { useState, useRef } from 'react';
+import axios from "axios";
+
 // import axios from 'axios';
 
 // Mui
@@ -7,7 +9,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 // import CloseIcon from '@mui/icons-material/Close';
-
 
 
 // Assets
@@ -53,13 +54,13 @@ const Signup: React.FC = () => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
-    setPasswordError(validatePassword(value) ? '' : Messages.InvalidPasswordError);
+    // setPasswordError(validatePassword(value) ? '' : Messages.InvalidPasswordError);
   };
 
   const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setContact(value);
-    setContactError(validateContact(value) ? '' : Messages.InvalidContactError);
+    // setContactError(validateContact(value) ? '' : Messages.InvalidContactError);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -73,16 +74,18 @@ const Signup: React.FC = () => {
       return;
     }
 
-    const addUser = { name, email, password, contact };
+    const addUser = { name, email, contact, password };
 
     try {
-      const response = await axios.post('http://localhost:5000/user', addUser, {
-        headers: { 'Content-Type': 'application/json' },
-      });
-      console.log(response.data);
+        const response = await axios.post("http://localhost:5000/user/adduser", addUser, {
+            headers: { "Content-Type": "application/json" },
+        });
+        console.log(response.data);
+        alert("User registered successfully");
     } catch (error) {
-      console.error('Error signing up:', error);
-    } 
+        console.error("Error signing up:", error);
+        alert("Signup failed");
+    }
   };
 
 
