@@ -16,11 +16,11 @@ import {
   faLocationDot,
   faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 
 
 export default function DashBoard() {
-  const navigate=useNavigate();
+  // const navigate=useNavigate();
 
   return (
 
@@ -196,8 +196,8 @@ export default function DashBoard() {
                 >
                   <AccountCircleIcon />
                 </div>
-                <button style={{height:'20px',width:'40px',color:'green'}} onClick={()=>navigate('/signin')}>Signup</button>
-                <button style={{height:'20px',width:'40px',color:'green'}} onClick={()=>navigate('/signup')}>Signin</button>
+                <button style={{height:'40px',width:'60px',background:'#EF6E0B',borderRadius:'14px',color:'white'}} onClick={()=>{}}>Signup</button>
+                <button style={{height:'40px',width:'60px',background:'#EF6E0B',borderRadius:'14px',color:'white'}} >Signin</button>
                 {/* <div
                   style={{
                     display: "flex",

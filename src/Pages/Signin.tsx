@@ -17,24 +17,20 @@ import { validateEmail } from '../Utils/validateEmail';
 import { validatePassword } from '../Utils/validatePassword';
 import { Messages } from '../Constants/Messages';
 import { CSSProperties } from 'react';
-import { validateContact } from '../Utils/validateContact';
+// import { validateContact } from '../Utils/validateContact';
 
 //Utils
 
 const Signin: React.FC = () => {
   const emailRef = useRef<HTMLInputElement>(null);
-  const nameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
-  const contactRef = useRef<HTMLInputElement>(null);
 
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [contact, setContact] = useState('');
+  // const [contact, setContact] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [nameError, setNameError] = useState('');
-  const [contactError, setContactError] = useState('');
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -42,11 +38,11 @@ const Signin: React.FC = () => {
     setEmailError(validateEmail(value) ? '' : Messages.InvalidEmailError);
   };
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setName(value);
-    setNameError(value ? '' : Messages.EmptyNameError);
-  };
+  // const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value;
+  //   setName(value);
+  //   setNameError(value ? '' : Messages.EmptyNameError);
+  // };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -54,24 +50,24 @@ const Signin: React.FC = () => {
     setPasswordError(validatePassword(value) ? '' : Messages.InvalidPasswordError);
   };
 
-  const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setContact(value);
-    setContactError(validateContact(value)?'': Messages.InvalidContactError);
-  };
+  // const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value;
+  //   setContact(value);
+  //   setContactError(validateContact(value)?'': Messages.InvalidContactError);
+  // };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name || !email || !password || !contact) {
-      setNameError(!name ?Messages.EmptyNameError : '');
+    if (!email || !password ) {
+      // setNameError(!name ?Messages.EmptyNameError : '');
       setEmailError(!email ? Messages.EmptyEmailError : '');
       setPasswordError(!password ? Messages.EmptyPasswordError : '');
-      setContactError(!contact ? Messages.EmptyContactError : '');
+      // setContactError(!contact ? Messages.EmptyContactError : '');
       return;
     }
 
-    const addUser = { name, email, password, contact };
+    const addUser = {  email, password };
 
     try {
       const response = await axios.post('http://localhost:5000/user', addUser, {
@@ -91,20 +87,14 @@ const Signin: React.FC = () => {
       </div>
       <div style={styles.formContainer}>
         <form onSubmit={handleSubmit}>
-          <Box sx={styles.inputBox}>
-            <TextField fullWidth label="Name" value={name} onChange={handleNameChange} inputRef={nameRef} />
-            <span style={styles.errorText}>{nameError}</span>
-          </Box>
+          
 
           <Box sx={styles.inputBox}>
             <TextField fullWidth label="Email" value={email} onChange={handleEmailChange} inputRef={emailRef} />
             <span style={styles.errorText}>{emailError}</span>
           </Box>
 
-          <Box sx={styles.inputBox}>
-            <TextField fullWidth label="Contact Number" value={contact} onChange={handleContactChange} inputRef={contactRef} />
-            <span style={styles.errorText}>{contactError}</span>
-          </Box>
+          
 
 
           <Box sx={styles.inputBox}>
@@ -142,7 +132,7 @@ const styles : { [key: string]: CSSProperties }= {
   buttonContainer:{marginTop:'15px'},
   container: { display: 'flex', alignItems: 'center', justifyContent: 'center' },
   imageContainer: { flex: 1.3,  },
-  carImage: { width: '95%',height:"500px" ,  borderBottomLeftRadius: '12px', // ✅ Only top-right
+  carImage: { width: '95%',height:"500px" ,  borderBottomLeftRadius: '12px', 
     borderTopLeftRadius: '12px'},
   formContainer: { flex: 1, padding: '20px' },
   title: { fontSize: '32px', marginBottom: '10px' },
