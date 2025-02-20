@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 
 //Assets
 import carimage from '../Assets/Images/carimage.jpg' 
+import carimg3 from '../Assets/Images/carimg3.jpg' 
+
 // import apple from 'Assets/Images/apple.png';
 import { validateEmail } from '../Utils/validateEmail';
 import { validatePassword } from '../Utils/validatePassword';
@@ -93,7 +95,7 @@ const Signin: React.FC = () => {
     <div style={styles.maincontainer}>
     <div style={styles.container}>
       <div style={styles.imageContainer}>
-        <img src={carimage} alt="logo" style={styles.carImage} />
+        <img src={carimg3} alt="logo" style={styles.carImage} />
       </div>
       <div style={styles.formContainer}>
         <form onSubmit={handleSubmit}>
