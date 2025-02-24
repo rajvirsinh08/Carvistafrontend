@@ -87,8 +87,9 @@ const Signin: React.FC = () => {
       </div>
       <div style={styles.formContainer}>
         <form onSubmit={handleSubmit}>
-          
-
+          <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+          <h1 style={{marginBottom:'50px',fontSize:'48px',fontFamily:'Berlin Sans FB Demi'}}>Sign in </h1>
+          </div>
           <Box sx={styles.inputBox}>
             <TextField fullWidth label="Email" value={email} onChange={handleEmailChange} inputRef={emailRef} />
             <span style={styles.errorText}>{emailError}</span>
@@ -105,6 +106,19 @@ const Signin: React.FC = () => {
          <div style={styles.buttonContainer}>
           <Button type="submit" variant="contained" sx={styles.signupButton}>Sign In</Button>
           </div>
+          <a
+            href="/forgetpassword"
+            style={{
+              textDecoration: "none",
+              color: "dark grey",
+              fontSize: "18px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+           Forgot your password?
+            </a>
           {/* <p style={styles.orText}>OR</p>
           <div style={styles.appleContainer}>
             <img src={apple} alt="Apple Logo" style={styles.appleImage} />
@@ -128,7 +142,7 @@ const styles : { [key: string]: CSSProperties }= {
     left: '50%', // Moves the left to 50% of the screen
     transform: 'translate(-50%, -50%)'
   },  
-  buttonContainer:{marginTop:'15px'},
+  buttonContainer:{marginTop:'15px',paddingBottom:'20px'},
   container: { display: 'flex', alignItems: 'center', justifyContent: 'center',background:'white',borderRadius:'16px' },
   imageContainer: { flex: 1.3, height:'500px' },
   carImage: { width: '95%',height:"500px" ,  borderBottomLeftRadius: '12px', 
