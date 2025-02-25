@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import resetpassword from "../Assets/Images/resetpassword.png";
+import {Link} from 'react-router-dom'
 
 const ResetPassword: React.FC = () => {
   const [password, setPassword] = useState<string>("");
@@ -109,7 +110,8 @@ const ResetPassword: React.FC = () => {
         </button>
 
         {/* Back to Login */}
-        <div
+        <Link to='/signin'>
+               <div
           style={{
             marginTop: "15px",
             fontSize: "14px",
@@ -119,6 +121,8 @@ const ResetPassword: React.FC = () => {
         >
           ← Back to Login
         </div>
+        </Link>
+ 
       </div>
     </div>
   );

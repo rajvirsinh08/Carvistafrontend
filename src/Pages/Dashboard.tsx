@@ -169,15 +169,15 @@ export default function DashBoard() {
         </div>
       </div>
 
-      <div className="herosection" style={{ position: "relative" }}>
+      <div className="herosection" style={{ position: "relative",zIndex:-1 ,marginBottom:'120px'}}>
         <img
           src={cars24heropage}
-          style={{ height: "500px", width: "100%", objectFit: "cover", zIndex: 999 }}
+          style={{ height: "500px", width: "100%", objectFit: "cover"}}
           alt="heropage"
         />
       </div>
 
-      <div className="heropagecontainer" style={{ display: "flex", justifyContent: "center" }}>
+      <div className="heropagecontainer" style={{ height:'278px',width:'1200px',position:'absolute',top:'90%',left:'50%', transform: 'translate(-50%,-50%)'}}>
         <div style={styles.container1}>
           {/* Top Menu */}
           <div style={styles.menu}>
