@@ -1,6 +1,6 @@
 // React
 import React, { useState, useRef } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 // Mui
 import Box from '@mui/material/Box';
@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 
 // Assets
 import carimage from '../Assets/Images/carimage.jpg';
+import carimg from '../Assets/Images/carimg.jpg';
+
 import { validateEmail } from '../Utils/validateEmail';
 import { validatePassword } from '../Utils/validatePassword';
 import { Messages } from '../Constants/Messages';
@@ -53,18 +55,17 @@ const Signup: React.FC = () => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
-    setPasswordError(validatePassword(value) ? '' : Messages.InvalidPasswordError);
+    // setPasswordError(validatePassword(value) ? '' : Messages.InvalidPasswordError);
   };
 
   const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setContact(value);
-    setContactError(validateContact(value) ? '' : Messages.InvalidContactError);
+    // setContactError(validateContact(value) ? '' : Messages.InvalidContactError);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!name || !email || !password || !contact) {
       setNameError(!name ? Messages.EmptyNameError : '');
       setEmailError(!email ? Messages.EmptyEmailError : '');
@@ -72,18 +73,24 @@ const Signup: React.FC = () => {
       setContactError(!contact ? Messages.EmptyContactError : '');
       return;
     }
-
-    const addUser = { name, email, password, contact };
-
+    const addUser = { name, email, contact, password };
     try {
-      const response = await axios.post('http://localhost:5000/user', addUser, {
-        headers: { 'Content-Type': 'application/json' },
-      });
-      console.log(response.data);
+        const response = await axios.post("http://localhost:5000/user/adduser", addUser, {
+            headers: { "Content-Type": "application/json" },
+        });
+        console.log(response.data);
+        alert("User registered successfully");
     } catch (error) {
-      console.error('Error signing up:', error);
-    } 
+        console.error("Error signing up:", error);
+        alert("Signup failed");
+    }
   };
+
+
+
+
+
+
 
 
 
@@ -92,7 +99,7 @@ const Signup: React.FC = () => {
     <div style={styles.maincontainer}>
       <div style={styles.container}>
         <div style={styles.imageContainer}>
-          <img src={carimage} alt="logo" style={styles.carImage} />
+          <img src={carimg} alt="logo" style={styles.carImage} />
         </div>
         <div style={styles.formContainer}>
           <form onSubmit={handleSubmit}>

@@ -1,6 +1,6 @@
 //React
 import React, { useState, useRef } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 
 //Mui
 import Box from '@mui/material/Box';
@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 
 //Assets
 import carimage from '../Assets/Images/carimage.jpg' 
+import carimg from '../Assets/Images/carimg.jpg';
+
 // import apple from 'Assets/Images/apple.png';
 import { validateEmail } from '../Utils/validateEmail';
 import { validatePassword } from '../Utils/validatePassword';
@@ -47,7 +49,7 @@ const Signin: React.FC = () => {
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
-    setPasswordError(validatePassword(value) ? '' : Messages.InvalidPasswordError);
+    // setPasswordError(validatePassword(value) ? '' : Messages.InvalidPasswordError);
   };
 
   // const handleContactChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +60,6 @@ const Signin: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!email || !password ) {
       // setNameError(!name ?Messages.EmptyNameError : '');
       setEmailError(!email ? Messages.EmptyEmailError : '');
@@ -66,16 +67,21 @@ const Signin: React.FC = () => {
       // setContactError(!contact ? Messages.EmptyContactError : '');
       return;
     }
-
-    const addUser = {  email, password };
-
+    const userData = { email, password };
     try {
-      const response = await axios.post('http://localhost:5000/user', addUser, {
+      // Define the expected response type
+      interface SignInResponse {
+        token: string;
+      }
+      const response = await axios.post<SignInResponse>('http://localhost:5000/user/signin', userData, {
         headers: { 'Content-Type': 'application/json' },
       });
-      console.log(response.data);
+      console.log('Login Success:', response.data);
+      localStorage.setItem('token', response.data.token); // Store token for authentication
+      alert('Login successful!');
     } catch (error) {
-      console.error('Error signing up:', error);
+      console.error('Error signing in:', error);
+      alert('Invalid email or password.');
     }
   };
 
@@ -83,7 +89,7 @@ const Signin: React.FC = () => {
     <div style={styles.maincontainer}>
     <div style={styles.container}>
       <div style={styles.imageContainer}>
-        <img src={carimage} alt="logo" style={styles.carImage} />
+        <img src={carimg} alt="logo" style={styles.carImage} />
       </div>
       <div style={styles.formContainer}>
         <form onSubmit={handleSubmit}>

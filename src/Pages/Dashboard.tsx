@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import cars24logo from "../Assets/Images/cars24logo.png";
+import carvista from "../Assets/Images/carvista.png";
+
 import cars24heropage from "../Assets/Images/cars24heropage.png";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
@@ -60,7 +62,7 @@ export default function DashBoard() {
           <div className="headersection1" style={styles.headersection1}>
             <div className="Logosection" style={styles.logosection}>
               <p>
-                <img src={cars24logo} style={styles.logoimage} alt="Cars24logo" />
+                <img src={carvista} style={styles.logoimage} alt="Cars24logo" />
               </p>
             </div>
             <div className="locationsection" style={styles.locationsection}>
@@ -126,16 +128,18 @@ export default function DashBoard() {
                 {/* Account Section */}
 
                 {/* Signup Button */}
-                <button
+                <Button 
+                 variant="outlined"
+                 color="info"
                   style={{
-                    height: "40px",
-                    width: "100%",
-                    background: "#EF6E0B",
-                    borderRadius: "10px",
-                    color: "white",
-                    border: "none",
+                    // height: "40px",
+                    // width: "100%",
+                    // background: "#EF6E0B"  ,
+                    // borderRadius: "10px",
+                    
+                    // border: "none",
                     cursor: "pointer",
-                    marginBottom: "10px",
+                    // marginBottom: "10px",
                   }}
                   onClick={() => {
                     setModalType("signup");
@@ -143,26 +147,28 @@ export default function DashBoard() {
                   }}
                 >
                   Signup
-                </button>
+                </Button>
 
                 {/* Signin Button */}
-                <button
-                  style={{
-                    height: "40px",
-                    width: "100%",
-                    background: "#EF6E0B",
-                    borderRadius: "10px",
-                    color: "white",
-                    border: "none",
-                    cursor: "pointer",
-                  }}
+                <Button
+                  variant="outlined"
+                 color="info"
+                  // style={{
+                  //   // height: "40px",
+                  //   // width: "100%",
+                  //   // background: "#EF6E0B",
+                  //   // borderRadius: "10px",
+                  //   // color: "white",
+                  //   // border: "none",
+                  //   // cursor: "pointer",
+                  // }}
                   onClick={() => {
                     setModalType("signin");
                     setOpen(true);
                   }}
                 >
                   Signin
-                </button>
+                </Button>
               </div>
             </div>
           </div>

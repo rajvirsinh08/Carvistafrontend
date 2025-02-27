@@ -1,0 +1,73 @@
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Container styling */
+  .form-container {
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  
+  /* Navigation bar */
+  .navigation {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    margin-bottom: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 5px;
+    width: 100%;
+  }
+  
+  /* Button styling */
+  .nav-button {
+    flex: 1;
+    padding: 8px;
+    background-color: #ddd;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    min-width: 120px;
+  }
+  
+  .nav-button.active {
+    background-color: #003366;
+    color: #fff;
+  }
+  
+  /* Button group styling */
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .button-group button {
+    padding: 10px 15px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .button-group button:hover {
+    background-color: #002244;
+  }
+  
+  /* Selected info */
+  .selected-info {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  
