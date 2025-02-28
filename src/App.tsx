@@ -6,13 +6,13 @@ import React from "react";
 // import ForgotPassword from "./Pages/Forgetpassword";
 // import ResetPassword from "./Pages/Resetpassword";
 // import OTPVerification from "./Pages/otpVerification";
-import Sell from "./Pages/Sell";
-// import Example from "./Pages/Buy";
+// import Sell from "./Pages/Sell";
+import Example from "./Pages/Buy";
 // import Example from "./Pages/Header";
 function App() {
   return (
-    <Sell/>
-    // <Example/>
+    // <Sell/>
+    <Example/>
     // <BrowserRouter>
     // <Routes>
     // <Route path="/" index element={<DashBoard/>}/>

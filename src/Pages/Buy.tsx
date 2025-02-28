@@ -16,6 +16,8 @@ import {
 import { ChevronUpIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 
+
+
 const sortOptions = [
     { name: 'Most Popular', href: '#', current: true },
     { name: 'Best Rating', href: '#', current: false },
@@ -68,6 +70,7 @@ const filters = [
     },
 ]
 
+
 function classNames(...classes: (string | undefined | null | false)[]): string {
     return classes.filter(Boolean).join(' ');
 }
@@ -75,6 +78,7 @@ function classNames(...classes: (string | undefined | null | false)[]): string {
 
 export default function Example() {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+    const [budget, setBudget] = useState<number>(200000);
 
     return (
         <div className="bg-white">
@@ -102,6 +106,7 @@ export default function Example() {
                                     <XMarkIcon aria-hidden="true" className="size-6" />
                                 </button>
                             </div>
+  
 
                             {/* Filters */}
                             <form className="mt-4 border-t border-gray-200">
@@ -232,6 +237,22 @@ export default function Example() {
                         </div>
                     </div>
 
+                    <div style={{ padding: "20px", maxWidth: "300px", border: "1px solid #ddd", borderRadius: "8px", backgroundColor: "#fff" }}>
+      <h3><b>Budget</b></h3>
+      <input
+        type="range"
+        min={200000}
+        max={10000000}
+        value={budget}
+        onChange={(e) => setBudget(Number(e.target.value))}
+        style={{ width: "100%" }}
+      />
+      <p style={{ display: "flex", justifyContent: "space-between" }}>
+        <span>₹ 2,00,000</span>
+        <span>₹ 1,00,00,000</span>
+      </p>
+      </div>
+
                     <section aria-labelledby="products-heading" className="pt-6 pb-24">
                         <h2 id="products-heading" className="sr-only">
                             Products
@@ -320,7 +341,9 @@ export default function Example() {
                         </div>
                     </section>
                 </main>
+                
             </div>
+
         </div>
     )
 }
