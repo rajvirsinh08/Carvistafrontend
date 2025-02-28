@@ -16,6 +16,7 @@ import Sheet from "@mui/joy/Sheet";
 import Signup from "./Signup";
 import Signin from "./Signin";
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 export default function DashBoard() {
@@ -84,9 +85,9 @@ export default function DashBoard() {
                 <FontAwesomeIcon icon={faChevronDown} style={styles.fachevrondown} />
               </div>
               <div className="sellsection" style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                <li style={{ fontFamily: "sans-serif", fontSize: "16px", listStyle: "none" }}>
+                <Link to="/sellCar"><li style={{ fontFamily: "sans-serif", fontSize: "16px", listStyle: "none" }}>
                   Sell Car
-                </li>
+                </li></Link>
                 <FontAwesomeIcon icon={faChevronDown} style={styles.fachevrondown} />
               </div>
               <div className="carfinancesection" style={{ display: "flex", alignItems: "center", gap: "5px" }}>

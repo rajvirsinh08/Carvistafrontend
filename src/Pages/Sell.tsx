@@ -21,6 +21,7 @@ const Sell: React.FC = () => {
 
   // const brands = ["Honda", "Toyota", "Hyundai", "Ford", "Kia", "Skoda"];
   const year = ["2024", "2023", "2022", "2021", "2020","2019","2018","2017","2016","2015","2014","2013","2012","2011","2010"];
+  const km=["Up to 10,000","10,000-20,000","20,000-30,000","30,000-40,000","40,000-50,000","50,000-60,000","60,000-70,000","70,000-80,000","90,000-1,00,000","1,00,000-1,25,000","1,25,000-1,50,000","1,50,000-1,75,000","1,75,000-2,00,000","2,25,000-2,50,000","Above 2,50,000"];
   // const model: Record<string, string[]> = {
   //   Honda: ["Amaze", "City", "Elevate", "Jazz", "WR-V"],
   //   Toyota: ["Innova", "Fortuner", "Glanza"],
@@ -35,6 +36,7 @@ const Sell: React.FC = () => {
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selectedFuel, setSelectedFuel] = useState<string | null>(null);
+  const [selectedkm,setSelecetedKm]=useState<string |null>(null);
   const [selectedTransmission, setSelectedTransmission] = useState<
     string | null
   >(null);
@@ -300,7 +302,7 @@ const Sell: React.FC = () => {
        <h3>{selectedBrand ? selectedBrand : "Select Car"} {selectedYear ? selectedYear : ""}</h3>
 
       <div className="navigation hide-scrollbar">
-         {["brand", "year", "model", "type", "fuel", "transmission"].map((item) => (
+         {["brand", "year", "model", "type", "fuel","km", "transmission"].map((item) => (
           <button
             key={item}
             onClick={() => setStep(item as Step)}
@@ -310,7 +312,8 @@ const Sell: React.FC = () => {
               (item === "model" && !selectedYear) ||
               (item === "type" && !selectedModel) ||
               (item === "fuel" && !selectedType) ||
-              (item === "transmission" && !selectedFuel)
+              (item === "kmdriven" && !selectedFuel)||
+              (item === "transmission" && !selectedkm)
             }
             className={`nav-button ${step === item ? "active" : ""} hide-scrollbar`}
           >
@@ -502,6 +505,60 @@ const Sell: React.FC = () => {
         </div>
       )}
 
+{step === "km" && (
+  <div
+    style={{
+      flex: 1,
+      padding: "20px",
+      backgroundColor: "#fff",
+      borderRadius: "10px",
+      width: "100%",
+      maxWidth: "400px",
+      margin: "auto",
+    }}
+  >
+    <h4 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "10px" }}>
+      Select Km Driven
+    </h4>
+
+    {/* Scrollable Year List */}
+    <div
+      style={{
+        maxHeight: "250px",
+        overflowY: "auto",
+        paddingRight: "5px",
+      }}
+    >
+      {km.map((km) => (
+        <button
+          key={km}
+          onClick={() => {
+            setSelectedKm(km);
+            setStep("model");
+          }}
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginBottom: "10px",
+            borderRadius: "10px",
+            fontSize: "16px",
+            fontWeight: selectedkm === km ? "bold" : "normal",
+            backgroundColor: selectedkm === km ? "#E6F0FF" : "#fff",
+            border: selectedkm === km ? "1px solid #003366" : "1px solid #ddd",
+            color: "#003366",
+            cursor: "pointer",
+            textAlign: "center",
+            display: "block",
+          }}
+        >
+          {year}
+        </button>
+      ))}
+    </div>
+  </div>
+)}
+
+
       {selectedTransmission && (
         <div className="selected-info">
           <h3>Selected: {selectedBrand} {selectedYear} {selectedModel} {selectedType} {selectedFuel} {selectedTransmission}</h3>
@@ -509,178 +566,7 @@ const Sell: React.FC = () => {
       )}
     </div>
 
-          {/* <div
-            style={{
-              width: "400px",
-              padding: "20px",
-              borderRadius: "10px",
-              backgroundColor: "#fff",
-              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-            }}
-          >
-            <h3>
-              {selectedBrand ? selectedBrand : "Select Car"}{" "}
-              {selectedYear ? selectedYear : ""}
-            </h3>
-
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: "20px",
-              }}
-            >
-              <button
-                onClick={() => setStep("brand")}
-                style={{
-                  flex: 1,
-                  padding: "10px",
-                  backgroundColor: step === "brand" ? "#003366" : "#ddd",
-                  color: step === "brand" ? "#fff" : "#000",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              >
-                Brand
-              </button>
-              <button
-                onClick={() => setStep("year")}
-                disabled={!selectedBrand}
-                style={{
-                  flex: 1,
-                  padding: "10px",
-                  backgroundColor: step === "year" ? "#003366" : "#ddd",
-                  color: step === "year" ? "#fff" : "#000",
-                  border: "none",
-                  cursor: selectedBrand ? "pointer" : "not-allowed",
-                }}
-              >
-                Year
-              </button>
-              <button
-                onClick={() => setStep("model")}
-                disabled={!selectedYear}
-                style={{
-                  flex: 1,
-                  padding: "10px",
-                  backgroundColor: step === "model" ? "#003366" : "#ddd",
-                  color: step === "model" ? "#fff" : "#000",
-                  border: "none",
-                  cursor: selectedYear ? "pointer" : "not-allowed",
-                }}
-              >
-                Model
-              </button>
-            </div>
-
-            {step === "brand" && (
-              <div>
-                <h4>Select Car Brand</h4>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-                  {brands.map((brand) => (
-                    <button
-                      key={brand}
-                      onClick={() => {
-                        setSelectedBrand(brand);
-                        setStep("year");
-                      }}
-                      style={{
-                        padding: "10px",
-                        backgroundColor:
-                          selectedBrand === brand ? "#003366" : "#eee",
-                        color: selectedBrand === brand ? "#fff" : "#000",
-                        border: "1px solid #ccc",
-                        cursor: "pointer",
-                      }}
-                    >
-                      {brand}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {step === "year" && (
-              <div>
-                <h4>Select Car Manufacturing Year</h4>
-                <div>
-                  {years.map((year) => (
-                    <button
-                      key={year}
-                      onClick={() => {
-                        setSelectedYear(year);
-                        setStep("model");
-                      }}
-                      style={{
-                        display: "block",
-                        width: "100%",
-                        padding: "10px",
-                        backgroundColor:
-                          selectedYear === year ? "#003366" : "#eee",
-                        color: selectedYear === year ? "#fff" : "#000",
-                        border: "1px solid #ccc",
-                        marginBottom: "5px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      {year}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {step === "model" && selectedBrand && (
-              <div>
-                <h4>Select Car Model</h4>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
-                  {models[selectedBrand]?.map((model) => (
-                    <button
-                      key={model}
-                      onClick={() => setSelectedModel(model)}
-                      style={{
-                        padding: "10px",
-                        backgroundColor:
-                          selectedModel === model ? "#003366" : "#eee",
-                        color: selectedModel === model ? "#fff" : "#000",
-                        border: "1px solid #ccc",
-                        cursor: "pointer",
-                      }}
-                    >
-                      {model}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {selectedModel && (
-              <div style={{ marginTop: "20px", textAlign: "center" }}>
-                <h3>
-                  Selected: {selectedBrand} {selectedYear} {selectedModel}
-                </h3>
-              </div>
-            )}
-          </div>
-          {/* <div className="bg-white shadow-lg p-6 rounded-lg w-full max-w-md">
-          <h2 className="text-lg font-bold mb-3">Enter your car number</h2>
-          <input
-            type="text"
-            placeholder="IND XX XX XXXX"
-            value={carNumber}
-            onChange={(e) => setCarNumber(e.target.value)}
-            className="w-full p-2 border rounded mb-4"
-          />
-          <button className="w-full bg-orange-500 text-white py-2 rounded font-bold">GET CAR PRICE</button>
-          <div className="mt-4 text-center text-gray-500">Or</div>
-          <div className="flex flex-wrap justify-center gap-2 mt-4">
-            {carBrands.map((brand, index) => (
-              <button key={index} className="border p-2 rounded text-gray-700 hover:bg-gray-100">
-                {brand}
-              </button>
-            ))}
-          </div>
-        </div> */}
+        
         </div>
       </div>
     </div>
@@ -888,139 +774,3 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
 };
 export default Sell;
-// import { useState } from "react";
-// // import "./CarSelectionForm.css"; // Import the CSS file
-// import '../Styles/temp.css';
-
-// type Step = "brand" | "year" | "model" | "type" | "fuel" | "transmission";
-
-// const CarSelectionForm: React.FC = () => {
-// const [step, setStep] = useState<Step>("brand");
-// const [selectedBrand, setSelectedBrand] = useState<string | null>(null);
-// const [selectedYear, setSelectedYear] = useState<string | null>(null);
-// const [selectedModel, setSelectedModel] = useState<string | null>(null);
-// const [selectedType, setSelectedType] = useState<string | null>(null);
-// const [selectedFuel, setSelectedFuel] = useState<string | null>(null);
-// const [selectedTransmission, setSelectedTransmission] = useState<string | null>(null);
-
-// const brands: string[] = ["Honda", "Toyota", "Hyundai", "Ford", "Kia", "Skoda"];
-// const years: string[] = ["2024", "2023", "2022", "2021", "2020"];
-// const carTypes: string[] = ["Sedan", "SUV", "Hatchback", "Coupe"];
-// const fuelTypes: string[] = ["Petrol", "Diesel", "Electric", "Hybrid"];
-// const transmissions: string[] = ["Manual", "Automatic"];
-
-// type CarModels = {
-//   [brand: string]: string[];
-// };
-
-// const models: CarModels = {
-//   Honda: ["Amaze", "City", "Elevate", "Jazz", "WR-V"],
-//   Toyota: ["Innova", "Fortuner", "Glanza"],
-//   Hyundai: ["Creta", "i20", "Venue"],
-//   Ford: ["Ecosport", "Endeavour"],
-//   Kia: ["Seltos", "Sonet"],
-//   Skoda: ["Kushaq", "Superb"],
-// };
-
-//   return (
-//     <div className="form-container hide-scrollbar">
-//       <h3>{selectedBrand ? selectedBrand : "Select Car"} {selectedYear ? selectedYear : ""}</h3>
-
-//       <div className="navigation hide-scrollbar">
-//         {["brand", "year", "model", "type", "fuel", "transmission"].map((item) => (
-//           <button
-//             key={item}
-//             onClick={() => setStep(item as Step)}
-//             disabled={
-//               (item === "year" && !selectedBrand) ||
-//               (item === "model" && !selectedYear) ||
-//               (item === "type" && !selectedModel) ||
-//               (item === "fuel" && !selectedType) ||
-//               (item === "transmission" && !selectedFuel)
-//             }
-//             className={`nav-button ${step === item ? "active" : ""} hide-scrollbar`}
-//           >
-//             {item.charAt(0).toUpperCase() + item.slice(1)}
-//           </button>
-//         ))}
-//       </div>
-
-//       {step === "brand" && (
-//         <div>
-//           <h4>Select Car Brand</h4>
-//           <div className="button-group">
-//             {brands.map((brand) => (
-//               <button key={brand} onClick={() => { setSelectedBrand(brand); setStep("year"); }}>
-//                 {brand}
-//               </button>
-//             ))}
-//           </div>
-//         </div>
-//       )}
-
-//       {step === "year" && (
-//         <div>
-//           <h4>Select Car Manufacturing Year</h4>
-//           {years.map((year) => (
-//             <button key={year} onClick={() => { setSelectedYear(year); setStep("model"); }}>
-//               {year}
-//             </button>
-//           ))}
-//         </div>
-//       )}
-
-//       {step === "model" && selectedBrand && (
-//         <div>
-//           <h4>Select Car Model</h4>
-//           {models[selectedBrand]?.map((model) => (
-//             <button key={model} onClick={() => { setSelectedModel(model); setStep("type"); }}>
-//               {model}
-//             </button>
-//           ))}
-//         </div>
-//       )}
-
-//       {step === "type" && (
-//         <div>
-//           <h4>Select Car Type</h4>
-//           {carTypes.map((type) => (
-//             <button key={type} onClick={() => { setSelectedType(type); setStep("fuel"); }}>
-//               {type}
-//             </button>
-//           ))}
-//         </div>
-//       )}
-
-//       {step === "fuel" && (
-//         <div>
-//           <h4>Select Fuel Type</h4>
-//           {fuelTypes.map((fuel) => (
-//             <button key={fuel} onClick={() => { setSelectedFuel(fuel); setStep("transmission"); }}>
-//               {fuel}
-//             </button>
-//           ))}
-//         </div>
-//       )}
-
-//       {step === "transmission" && (
-//         <div>
-//           <h4>Select Transmission</h4>
-//           {transmissions.map((trans) => (
-//             <button key={trans} onClick={() => setSelectedTransmission(trans)}>
-//               {trans}
-//             </button>
-//           ))}
-//         </div>
-//       )}
-
-//       {selectedTransmission && (
-//         <div className="selected-info">
-//           <h3>Selected: {selectedBrand} {selectedYear} {selectedModel} {selectedType} {selectedFuel} {selectedTransmission}</h3>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default CarSelectionForm;
-// /* Hide scrollbar for webkit browsers */
