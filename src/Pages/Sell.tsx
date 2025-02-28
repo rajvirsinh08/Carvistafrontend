@@ -5,7 +5,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useState } from "react";
-import { FaMapMarkerAlt, FaUserCircle } from "react-icons/fa";
+// import { FaMapMarkerAlt, FaUserCircle } from "react-icons/fa";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import cars24logo from "../Assets/Images/cars24logo.png";
 import sellerPerson from "../Assets/Images/sellerPerson.jpg";
@@ -21,7 +21,7 @@ const Sell: React.FC = () => {
 
   // const brands = ["Honda", "Toyota", "Hyundai", "Ford", "Kia", "Skoda"];
   const year = ["2024", "2023", "2022", "2021", "2020","2019","2018","2017","2016","2015","2014","2013","2012","2011","2010"];
-  const km=["Up to 10,000","10,000-20,000","20,000-30,000","30,000-40,000","40,000-50,000","50,000-60,000","60,000-70,000","70,000-80,000","90,000-1,00,000","1,00,000-1,25,000","1,25,000-1,50,000","1,50,000-1,75,000","1,75,000-2,00,000","2,25,000-2,50,000","Above 2,50,000"];
+  const kmOptions=["Up to 10,000","10,000-20,000","20,000-30,000","30,000-40,000","40,000-50,000","50,000-60,000","60,000-70,000","70,000-80,000","90,000-1,00,000","1,00,000-1,25,000","1,25,000-1,50,000","1,50,000-1,75,000","1,75,000-2,00,000","2,25,000-2,50,000","Above 2,50,000"];
   // const model: Record<string, string[]> = {
   //   Honda: ["Amaze", "City", "Elevate", "Jazz", "WR-V"],
   //   Toyota: ["Innova", "Fortuner", "Glanza"],
@@ -49,7 +49,7 @@ const Sell: React.FC = () => {
     "Kia",
     "Skoda",
   ];
-  const years: string[] = ["2024", "2023", "2022", "2021", "2020"];
+  // const years: string[] = ["2024", "2023", "2022", "2021", "2020"];
   const carTypes: string[] = ["Sedan", "SUV", "Hatchback", "Coupe"];
   const fuelTypes: string[] = ["Petrol", "Diesel", "Electric", "Hybrid"];
   const transmissions: string[] = ["Manual", "Automatic"];
@@ -505,7 +505,7 @@ const Sell: React.FC = () => {
         </div>
       )}
 
-{step === "km" && (
+{step === "kmoptions" && (
   <div
     style={{
       flex: 1,
@@ -529,11 +529,11 @@ const Sell: React.FC = () => {
         paddingRight: "5px",
       }}
     >
-      {km.map((km) => (
+      {kmOptions.map((km) => (
         <button
           key={km}
           onClick={() => {
-            setSelectedKm(km);
+            setSelecetedKm(km);
             setStep("model");
           }}
           style={{
@@ -551,7 +551,7 @@ const Sell: React.FC = () => {
             display: "block",
           }}
         >
-          {year}
+          {km}
         </button>
       ))}
     </div>
